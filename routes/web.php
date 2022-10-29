@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ShoppingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,21 +27,20 @@ Route::prefix('/user')->group(function() {
     Route::get('/register', [UserController::class, 'index'])->name('front.user.index');
     Route::post('/register', [UserController::class, 'register'])->name('front.user.register.post');
 });
-                                    /*
 // post auth
 Route::middleware('auth')->group(function(){
     Route::prefix('/shopping_list')->group(function() {
         Route::get('/list', [ShoppingListController::class, 'list'])->name('front.list');
         Route::post('/register', [ShoppingListController::class, 'register']);
-        Route::delete('/delete/{shopping_list_id}', [ShoppingListController::class, 'delete'])->whereNumber('shopping_list_id')->name('delete');
-        Route::post('/complete/{shopping_list_id}', [ShoppingListController::class, 'complete'])->whereNumber('shopping_list_id')->name('complete');
+        // Route::delete('/delete/{shopping_list_id}', [ShoppingListController::class, 'delete'])->whereNumber('shopping_list_id')->name('delete');
+        // Route::post('/complete/{shopping_list_id}', [ShoppingListController::class, 'complete'])->whereNumber('shopping_list_id')->name('complete');
     });
     // display completed shopping list
     Route::get('/completed_shopping_list/list', [CompletedShoppingListController::class, 'list']);
     // logout
     Route::get('/logout', [AuthController::class, 'logout']);
 });
-                                    /*
+/*
 //----------
 // admin
 //----------
@@ -55,4 +55,4 @@ Route::prefix('/admin')->group(function () {
     });
     // logout
     Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
+});*/

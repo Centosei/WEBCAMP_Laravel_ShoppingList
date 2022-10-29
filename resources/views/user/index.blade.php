@@ -1,4 +1,7 @@
 @extends('layout')
+
+@section('title')(会員登録)@endsection
+
 @section('main')
         <h1>会員登録</h1>
         @if ($errors->any())

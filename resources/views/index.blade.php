@@ -1,4 +1,7 @@
 @extends('layout')
+
+@section('title')(ログイン)@endsection
+
 @section('main')
         <h1>ログイン</h1>
         @if (session('front.user_register_success') == true)

@@ -32,7 +32,7 @@ class AuthController extends Controller
             return back()->withInput()->withErrors(['メールアドレスかパスワードに誤りがあります'],);
         }
         $request->session()->regenerate();
-        return redirect()->intended('/');
+        return redirect()->intended('/shopping_list/list');
         
     }
 }
