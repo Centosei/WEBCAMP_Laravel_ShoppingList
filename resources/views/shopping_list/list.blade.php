@@ -7,6 +7,15 @@
         @if (session('front.list_register_success') == true)
             「買うもの」を登録しました！！<br>
         @endif
+        @if (session('front.list_delete_success') == true)
+            「買うもの」を削除しました！！<br>
+        @endif
+        @if (session('front.list_completed_success') == true)
+            「買うもの」を完了にしました！！<br>
+        @endif
+        @if (session('front.list_completed_failure') == true)
+            「買うもの」の完了に失敗しました....<br>
+        @endif
         @if ($errors->any())
             <div>
             @foreach ($errors->all() as $error)
@@ -20,9 +29,6 @@
             <button>「買うもの」を登録する</button>
         </form>
         <h1>「買うもの」一覧</h1>
-        @if (session('front.list_delete_success') == true)
-            「買うもの」を削除しました！！<br>
-        @endif
         <a href="/completed_shopping_list/list">購入済み「買うもの」一覧</a>
         <table border="1">
             <tr>
@@ -36,7 +42,7 @@
                 <td>
                     <form action="#" method="post">
                         @csrf
-                        <button onclick='return confirm("このタスクを「完了」にします。よろしいですか？");'>完了</button>
+                        <button>完了</button>
                     </form>
                 </td>
                 <td>　</td>

@@ -3,12 +3,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ShoppingListPost;
-use Illuminate\Support\Facades\Auth;
-use App\Models\ShoppingList as ShoppingListModel;
-use Illuminate\Http\Request;
 
-class ShoppingListController extends Controller
+class CompletedShoppingListController extends Controller
 {
     /**
      * 
@@ -17,6 +13,6 @@ class ShoppingListController extends Controller
      */
     public function list()
     {
-        return view('shopping_list.list', ['list' => $list]);
+        return view('shopping_list.completed_list');
     }
 }

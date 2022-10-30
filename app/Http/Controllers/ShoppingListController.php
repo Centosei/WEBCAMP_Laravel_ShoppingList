@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ShoppingListPost;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ShoppingList as ShoppingListModel;
+use App\Models\CompletedShoppingList as CompletedShoppingListModel;
 use Illuminate\Http\Request;
 
 class ShoppingListController extends Controller
@@ -82,11 +83,41 @@ class ShoppingListController extends Controller
     public function delete(Request $request, $shopping_list_id)
     {
         $item = $this->getShoppingListModel($shopping_list_id);
-        var_dump($item);
-        die();
         if ($item !== null) {
             $item->delete();
             $request->session()->flash('front.list_delete_success', true);
+        }
+        return redirect('/shopping_list/list');
+    }
+    
+    /**
+     * complete
+     * 
+     */
+    public function complete(Request $request, $shopping_list_id)
+    {
+        try {
+            DB::beginTransaction();
+            // 
+            $item = $this->getShoppingListModel($shopping_list_id);
+            if ($item === null) {
+                throw new \Exception('');
+            }
+            $item->delete();
+            // 
+            $item_datum = $item->toArray();
+            unset($item_datum['created_at']);
+            unset($item_datum['updated_at']);
+            $r = CompletedShoppingListModel::create($item_datum);
+            if ($r === null) {
+                throw new \Exception('');
+            }
+            // 
+            DB::commit();
+            $request->session()->flash('front.list_completed_success', true);
+        } catch(\Throwable $e) {
+            DB::rollBack();
+            $request->session()->flash('front.list_completed_failure', true);
         }
         return redirect('/shopping_list/list');
     }
