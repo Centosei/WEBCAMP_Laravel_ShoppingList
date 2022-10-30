@@ -42,7 +42,7 @@
                 <td>
                     <form action="{{ route('complete', ['shopping_list_id' => $item->id]) }}" method="post">
                         @csrf
-                        <button>完了</button>
+                        <button onclick='return confirm("この「買うもの」を「完了」にします。よろしいですか？");'>完了</button>
                     </form>
                 </td>
                 <td>　</td>
@@ -50,7 +50,7 @@
                     <form action="{{ route('delete', ['shopping_list_id' => $item->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button>削除</button>
+                        <button onclick='return confirm("この「買うもの」を「削除」します。よろしいですか？");'>削除</button>
                     </form>
                 </td>
             </tr>
