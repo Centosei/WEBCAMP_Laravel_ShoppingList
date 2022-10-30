@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminHomeController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShoppingListController;
 use App\Http\Controllers\CompletedShoppingListController;
@@ -17,9 +20,9 @@ use App\Http\Controllers\CompletedShoppingListController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//----------
+//--------------------
 // User
-//----------
+//--------------------
 // pre auth
 Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
@@ -41,10 +44,9 @@ Route::middleware(['auth'])->group(function(){
     // logout
     Route::get('/logout', [AuthController::class, 'logout']);
 });
-/*
-//----------
-// admin
-//----------
+//--------------------
+// Admin
+//--------------------
 Route::prefix('/admin')->group(function () {
     // pre auth
     Route::get('', [AdminAuthController::class, 'index'])->name('admin.index');
@@ -56,4 +58,4 @@ Route::prefix('/admin')->group(function () {
     });
     // logout
     Route::get('/logout', [AdminAuthController::class, 'logout']);
-});*/
+});
