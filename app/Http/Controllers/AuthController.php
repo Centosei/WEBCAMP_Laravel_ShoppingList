@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginPostRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -34,5 +35,17 @@ class AuthController extends Controller
         $request->session()->regenerate();
         return redirect()->intended('/shopping_list/list');
         
+    }
+    
+    /**
+     * logout method
+     * 
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->regenerateToken();
+        $request->session()->regenerate();
+        return redirect('/');
     }
 }
