@@ -40,7 +40,7 @@
                 <td>{{ $item->created_at->format('Y/m/d') }}</td>
                 <td>{{ $item->name }}</td>
                 <td>
-                    <form action="#" method="post">
+                    <form action="{{ route('complete', ['shopping_list_id' => $item->id]) }}" method="post">
                         @csrf
                         <button>完了</button>
                     </form>

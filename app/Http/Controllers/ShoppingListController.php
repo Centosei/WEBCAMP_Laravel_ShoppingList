@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ShoppingList as ShoppingListModel;
 use App\Models\CompletedShoppingList as CompletedShoppingListModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShoppingListController extends Controller
 {
